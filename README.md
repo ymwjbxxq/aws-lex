@@ -55,3 +55,35 @@ Each intent will have their own utterance phrases and their slots.
 * 4 Slots: email, otp, input1 and input2
 * Lambda initialization and validation is hooked to onTimePassword lambda
 * The fulfillment section is hooked to myRestrictAction lambda
+
+## A NOTE
+
+Inside the lambda I am returning 
+```javaScript
+ return {
+      "sessionAttributes": intentRequest.sessionAttributes,
+      "dialogAction": {
+          "type": "ElicitIntent",
+          "message": {
+            "contentType": "CustomPayload",
+            "content": "Sent.\n\nAnything else?"
+          }
+      }
+    };
+```
+
+because in this way I let the user decide what to do next and also to keep the session alive (you can setup when you create the bot). Now the user could type "I want to do x and Y" and you can catch this with the next Intent.
+If you enable the code that I left in the lambda
+```javaScript
+ return {
+        "dialogAction": {
+            "type": "Close",
+            "fulfillmentState": "Fulfilled",
+            "message": {
+              "contentType": "PlainText",
+              "content": "Message"
+            }
+        }
+    };
+```
+You will notice that the session with the user will be terminated and in case the user will request an Intent that required email and otp the BOT will restart the process all over again.
