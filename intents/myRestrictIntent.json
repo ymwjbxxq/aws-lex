@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "MyRestrictAction",
+    "version": "1",
+    "fulfillmentActivity": {
+      "codeHook": {
+        "uri": "arn:aws:lambda:YOUR_REGION:YOUR_ACCOUNT:function:bot-myRestrictAction",
+        "messageVersion": "1.0"
+      },
+      "type": "CodeHook"
+    },
+    "sampleUtterances": [
+      "I want to do {input1}",
+      "I want to do {input1} with {input2}"
+    ],
+    "slots": [
+      {
+        "sampleUtterances": [],
+        "slotType": "AMAZON.EmailAddress",
+        "obfuscationSetting": "NONE",
+        "slotConstraint": "Required",
+        "valueElicitationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Can you tell me your email?"
+            }
+          ],
+          "maxAttempts": 2
+        },
+        "priority": 1,
+        "name": "email"
+      },
+      {
+        "sampleUtterances": [],
+        "slotType": "AMAZON.AlphaNumeric",
+        "obfuscationSetting": "NONE",
+        "slotConstraint": "Required",
+        "valueElicitationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "One time password?"
+            }
+          ],
+          "maxAttempts": 2
+        },
+        "priority": 2,
+        "name": "otp"
+      },
+      {
+        "sampleUtterances": [],
+        "slotType": "AMAZON.AlphaNumeric",
+        "obfuscationSetting": "NONE",
+        "slotConstraint": "Required",
+        "valueElicitationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Input1:"
+            }
+          ],
+          "maxAttempts": 2
+        },
+        "priority": 1,
+        "name": "input1"
+      },
+      {
+        "sampleUtterances": [],
+        "slotType": "AMAZON.AlphaNumeric",
+        "obfuscationSetting": "NONE",
+        "slotConstraint": "Required",
+        "valueElicitationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Input2:"
+            }
+          ],
+          "maxAttempts": 2
+        },
+        "priority": 2,
+        "name": "input2"
+      }
+    ],
+    "dialogCodeHook": {
+      "uri": "arn:aws:lambda:YOUR_REGION:YOUR_ACCOUNT:function:bot-oneTimePassword",
+      "messageVersion": "1.0"
+    }
+  }
+}
