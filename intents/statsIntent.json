@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "Stats",
+    "version": "1",
+    "fulfillmentActivity": {
+      "codeHook": {
+        "uri": "arn:aws:lambda:YOUR_REGION:YOUR_ACCOUNT:function:bot-stats",
+        "messageVersion": "1.0"
+      },
+      "type": "CodeHook"
+    },
+    "sampleUtterances": [
+      "stats",
+      "statistics",
+      "show me some stats",
+      "stats from {startDate} to {endDate}",
+      "statistics from {startDate} to {endDate}"
+    ],
+    "slots": [
+      {
+        "sampleUtterances": [],
+        "slotType": "AMAZON.DATE",
+        "obfuscationSetting": "NONE",
+        "slotConstraint": "Required",
+        "valueElicitationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "To?"
+            }
+          ],
+          "maxAttempts": 2
+        },
+        "priority": 2,
+        "name": "endDate"
+      },
+      {
+        "sampleUtterances": [],
+        "slotType": "AMAZON.DATE",
+        "obfuscationSetting": "NONE",
+        "slotConstraint": "Required",
+        "valueElicitationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "From?"
+            }
+          ],
+          "maxAttempts": 2
+        },
+        "priority": 1,
+        "name": "startDate"
+      }
+    ],
+    "slotTypes": []
+  }
+}
