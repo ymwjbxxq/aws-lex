@@ -59,7 +59,7 @@ Each Intent will have its utterance phrases and their slots.
 ## A NOTE
 
 Inside the Lambda, I am returning 
-"`javaScript
+```javaScript
  return {
       "sessionAttributes": intentRequest.sessionAttributes,
       "dialogAction": {
